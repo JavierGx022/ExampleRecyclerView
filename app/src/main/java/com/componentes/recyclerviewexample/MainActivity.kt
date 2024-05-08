@@ -20,17 +20,19 @@ class MainActivity : AppCompatActivity() {
         val fragment= ShowListAnimals()
 
         binding.btnFragment.setOnClickListener {
-
-
-            supportFragmentManager.beginTransaction()
-                .add(R.id.main, fragment)
-                .commit()
+            if (!fragment.isAdded) {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.main, fragment)
+                    .commit()
+            }
         }
 
         binding.btnHide.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .hide(fragment)
-                .commit()
+            if (fragment.isAdded) {
+                supportFragmentManager.beginTransaction()
+                    .remove(fragment)
+                    .commit()
+            }
         }
 
 
