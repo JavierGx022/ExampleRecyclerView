@@ -17,12 +17,19 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val fragment= ShowListAnimals()
 
         binding.btnFragment.setOnClickListener {
-            val fragment= ShowListAnimals()
+
 
             supportFragmentManager.beginTransaction()
                 .add(R.id.main, fragment)
+                .commit()
+        }
+
+        binding.btnHide.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .hide(fragment)
                 .commit()
         }
 
